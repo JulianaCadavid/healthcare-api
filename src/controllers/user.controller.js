@@ -39,4 +39,33 @@ userCtrl.logIn = async ( req, res) =>{
     }
 } 
 
+userCtrl.getAll = async ( req , res ) => {
+  try
+  {
+    var users = await User.find({})
+
+    res.status(200).json(users);
+  }
+  catch(err)
+  {
+    res.status(500).json(err)
+  }
+}
+
+userCtrl.getOne = async ( req , res ) => {
+  try
+  {
+    var user = await User.findById(req.params.id)
+
+    res.status(200).json(user);
+  }
+  catch(err)
+  {
+    res.status(500).json(err)
+  }
+}
+
+
+
+
 module.exports = userCtrl;
